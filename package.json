@@ -6,8 +6,10 @@
   "author": "david-osas <azamegbeosarumense@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase-admin": "^9.4.2",
-    "multer": "^1.4.2"
+    "formidable": "^1.2.2",
+    "uuid": "^8.3.2"
   }
 }

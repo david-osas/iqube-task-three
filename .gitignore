@@ -1,3 +1,4 @@
 node_modules
 revie-firebase-admin-config.json
 uploads
+.env
