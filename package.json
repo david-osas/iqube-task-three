@@ -1,0 +1,13 @@
+{
+  "name": "iqube-task-three",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/david-osas/iqube-task-three.git",
+  "author": "david-osas <azamegbeosarumense@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase": "^8.2.1"
+  }
+}
