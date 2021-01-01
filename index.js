@@ -92,6 +92,20 @@ app.get('/all-reviews', async (req, res) => {
   res.json(reviews);
 });
 
+app.get('/one-review', async (req, res) => {
+  const id = req.body.id;
+
+  if(!id){
+    return res.send('No Id was passed');
+  }
+  const doc = await firebaseDb.collection('reviews').doc(id).get();
+
+  if(!doc.exists){
+    return res.send('Invalid Id, no review has that Id');
+  }
+  return res.json(doc.data());
+});
+
 app.listen(3000, () => {
   console.log('app started on port 3000');
 })
