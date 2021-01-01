@@ -54,6 +54,43 @@ app.post('/create-review', getMediaList, async (req, res) => {
   return;
 });
 
+app.get('/all-reviews', async (req, res) => {
+  let reviews = [];
+
+  const snapshot = await firebaseDb.collection('reviews').get();
+  snapshot.forEach(doc => {
+    reviews.push({id: doc.id, data: doc.data()});
+  });
+
+  let query = req.query;
+
+  if(query.organize){
+    let key;
+    switch(query.organize){
+      case 'helpful':
+      key = 'helpful';
+      break;
+
+      case 'recent':
+      key = 'timestamp';
+      break;
+
+      default:
+      key = 'timestamp';
+    }
+    reviews.sort((a,b) => {
+      if(a.data[key] > b.data[key]){
+        return -1;
+      }else if(a.data[key] < b.data[key]){
+        return 1;
+      }else{
+        return 0;
+      }
+    });
+  }
+
+  res.json(reviews);
+});
 
 app.listen(3000, () => {
   console.log('app started on port 3000');
