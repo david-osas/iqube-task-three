@@ -106,6 +106,17 @@ app.get('/one-review', async (req, res) => {
   return res.json(doc.data());
 });
 
+app.delete('/delete-review', async (req, res) => {
+  const id = req.body.id;
+
+  if(!id){
+    return res.send('No Id was passed');
+  }
+  const deleteRes = await firebaseDb.collection('reviews').doc(id).delete();
+
+  return res.send('osas');
+});
+
 app.listen(3000, () => {
   console.log('app started on port 3000');
 })
