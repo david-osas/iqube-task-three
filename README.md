@@ -7,7 +7,7 @@
 ### Create a review
   To create a review make a POST request to 
   ```
-  [create route]
+  https://revie-api.herokuapp.com/create-review
   ```
   and pass the review data as form data to the body property in your request
   The form data must be structured as follows
@@ -29,7 +29,7 @@
 ### View all reviews
 To view all reviews make a GET request to 
 ```
-[get route]
+https://revie-api.herokuapp.com/all-reviews
 ```
 An array of JavaScript objects is returned in JSON format as the api response. An example format is shown below
 ```
@@ -55,17 +55,17 @@ An array of JavaScript objects is returned in JSON format as the api response. A
 ```
 If you want to get reviews sorted based on most helpful, make a GET request to this url
 ```
-[sort route]
+https://revie-api.herokuapp.com/all-reviews?organize=helpful
 ```
 If you want to get reviews sorted based on most recent, make a GET request to this url
 ```
-[sort route]
+https://revie-api.herokuapp.com/all-reviews?organize=recent
 ```
 
 ### Get one review
 To get one review, make a GET request to the this url
 ```
-[one route]
+https://revie-api.herokuapp.com/one-review
 ```
 and pass a key-value object to the body property in your request. The object should contain an `id` property which contains the ID of the review being requested.
 An example of the api response is shown below
@@ -89,7 +89,7 @@ An example of the api response is shown below
 ### Mark as helpful
 To mark a review as helpful, make a PATCH request to 
 ```
-[helpful route]
+https://revie-api.herokuapp.com/helpful-review
 ```
 and pass a key-value object to the body property in your request. The object should contain an `id` property which contains the ID of the review being marked.
 If the review has been marked helpful successfully, you will get the string response shown below with status code 200
@@ -101,7 +101,7 @@ review has been successfully marked helpful
 
 To delete a review, make a DELETE request to 
 ```
-[helpful route]
+https://revie-api.herokuapp.com/delete-review
 ```
 and pass a key-value object to the body property in your request. The object should contain an `id` property which contains the ID of the review being marked.
 If the review has been deleted successfully, you will get the string response shown below with status code 200
