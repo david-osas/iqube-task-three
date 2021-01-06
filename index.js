@@ -27,7 +27,7 @@ app.post('/create-review', getMediaList, async (req, res) => {
     timestamp: date.toISOString(),
     media: []
   });
-  res.send('review has been successfully created');
+  res.status(200).send('review has been successfully created');
 
   let mediaUrls = [];
   for(let path of req.mediaPaths){
@@ -101,27 +101,27 @@ app.get('/one-review', async (req, res) => {
   const id = req.body.id;
 
   if(!id){
-    return res.send('No Id was passed');
+    return res.status(406).send('No Id was passed');
   }
   const doc = await firebaseDb.collection('reviews').doc(id).get();
 
   if(!doc.exists){
-    return res.send('Invalid Id, no review has that Id');
+    return res.status(404).send('Invalid Id, no review has that Id');
   }
-  return res.json(doc.data());
+  return res.status(200).json(doc.data());
 });
 
 app.delete('/delete-review', async (req, res) => {
   const id = req.body.id;
 
   if(!id){
-    return res.send('No Id was passed');
+    return res.status(406).send('No Id was passed');
   }
   const docRef = firebaseDb.collection('reviews').doc(id);
   const doc = await docRef.get();
 
   if(!doc.exists){
-    return res.send('Invalid Id, no review has that Id');
+    return res.status(404).send('Invalid Id, no review has that Id');
   }
 
   const data = doc.data();
@@ -143,17 +143,17 @@ app.patch('/helpful-review', async (req, res) => {
   const id = req.body.id;
 
   if(!id){
-    return res.send('No Id was passed');
+    return res.status(406).send('No Id was passed');
   }
   const docRef = firebaseDb.collection('reviews').doc(id);
   const doc = await docRef.get();
 
   if(!doc.exists){
-    return res.send('Invalid Id, no review has that Id');
+    return res.status(404).send('Invalid Id, no review has that Id');
   }
   const updateRes = await docRef.update({helpful: doc.data().helpful + 1});
 
-  return res.send('review has been successfully marked helpful');
+  return res.status(200).send('review has been successfully marked helpful');
 });
 
 app.listen(3000, () => {

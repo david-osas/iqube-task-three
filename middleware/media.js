@@ -24,12 +24,12 @@ async function getMediaList(req, res, next){
     mediaPaths.push(files[key].path);
   }
   if(Object.keys(fields).length !== fieldSet.size){
-    res.send('Invalid number of arguments passed');
+    res.status(406).send('Invalid number of arguments passed');
     return;
   }
   for(let key in fields){
     if(!fieldSet.has(key)){
-      res.send('Invalid argument key passed');
+      res.status(406).send('Invalid argument key passed');
       return;
     }
   }
